@@ -1,4 +1,4 @@
---SQL script to create users table with given requirements
+-- script to create users table with given requirements
 
 CREATE TABLE IF NOT EXISTS users (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
