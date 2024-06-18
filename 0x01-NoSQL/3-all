@@ -1,0 +1,3 @@
+// Lists all documents from a collection
+
+db.school.find()
