@@ -52,7 +52,7 @@ def replay(method: Callable):
             arg_str = inp.decode('utf-8')
             output_key = out.decode('utf-8')
             print(f"{method_name}(*{arg_str}) -> {output_key}")
-    #return wrapper
+    return wrapper
 
 
 class Cache:
