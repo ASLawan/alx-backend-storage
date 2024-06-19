@@ -35,6 +35,26 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
+def replay(method: Callable):
+    """Returns history of calls for a partyn method"""
+    def wrapper(instance: Cache):
+        """Wrapper function"""
+        method_name = method.__qualname__
+        input_keys = f"{method_name}:inputs"
+        output_keys = f"{method_name}:outputs"
+
+        inputs = instance._redis.lrange(input_keys, 0, -1)
+        outputs = instance._redis.lrange(output_keys, 0, -1)
+
+        print(f"{method_name} was called {len(inputs)} times:")
+
+        for inp, out in zip(inputs, outputs):
+            arg_str = inp.decode('utf-8')
+            output_key = out.decode('utf-8')
+            print(f"{method_name}(*{arg_str}) -> {output_key}")
+    #return wrapper
+
+
 class Cache:
     """Instantiates instances of redis client"""
     def __init__(self):
