@@ -1,4 +1,4 @@
 // Lists all documents with name: "Holberton school" in the
 // school colection
 
-db.school.find({name: 'Holberton school'})
+db.school.find({name: 'Holberton School'})
