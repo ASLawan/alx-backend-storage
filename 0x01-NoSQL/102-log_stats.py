@@ -26,6 +26,14 @@ def print_logs():
             count += 1
         print(f"{count} status check")
 
+        top_IPs = collection.aggregate([
+            {"$group": {"_id": "$ip", "count": {"$sum": 1}}},
+            {"$sort": {"count": -1}},
+            {"$limit": 10}
+            ])
+        print("IPs:")
+        for ip in top_IPs:
+            print(f"\t{ip['_id']}: {ip['count']}")
     except Exception as e:
         print(f"Error as {e}")
     finally:
