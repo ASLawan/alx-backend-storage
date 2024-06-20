@@ -17,10 +17,10 @@ def print_logs():
         print(f"{total_logs} logs")
         print("Methods:")
         methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-        space = " " * 4
+        #space = " " * 4
         for method in methods:
             count = collection.count_documents({'method': method})
-            print(f"{space}method {method}: {count}")
+            print(f"\tmethod {method}: {count}")
         get_collection = collection.find({"method": "GET", "path": "/status"})
         count = 0
         for item in get_collection:
